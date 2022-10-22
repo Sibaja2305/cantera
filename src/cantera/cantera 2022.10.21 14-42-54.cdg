@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="cantera">
+  <ClassDiagramComponents>
+    <Class name="SandProject" package="cantera" visibility="public" xPosition="883.0" yPosition="15.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="VehicleRegistration" package="cantera" visibility="public" xPosition="883.0" yPosition="424.0">
+      <Fields>
+        <Field name="entryTime" type="Date" visibility="private"/>
+        <Field name="exitTime" type="Date" visibility="private"/>
+        <Field name="entryDate" type="Date" visibility="private"/>
+        <Field name="exitDate" type="Date" visibility="private"/>
+        <Field name="vehicle" type="Vehicle" visibility="private"/>
+        <Field name="amountLoaded" type="double" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Applicant" package="cantera" visibility="public" xPosition="482.0" yPosition="358.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Product" package="cantera" visibility="public" xPosition="1094.0" yPosition="192.0">
+      <Fields>
+        <Field name="materialType" type="String" visibility="private"/>
+        <Field name="quantity" type="double" visibility="private"/>
+        <Field name="price" type="double" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Billing" package="cantera" visibility="public" xPosition="883.0" yPosition="128.0">
+      <Fields>
+        <Field name="request" type="Request" visibility="private"/>
+        <Field name="totalPrice" type="double" visibility="private"/>
+        <Field name="BillingNumber" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Person" package="cantera" visibility="public" xPosition="140.0" yPosition="231.0">
+      <Fields>
+        <Field name="DNI" type="String" visibility="private"/>
+        <Field name="contact" type="Contact" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Business" package="cantera" visibility="public" xPosition="583.0" yPosition="24.0">
+      <Fields>
+        <Field name="CIF" type="String" visibility="private"/>
+        <Field name="nameBusiness" type="String" visibility="private"/>
+        <Field name="contact" type="Contact" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Vehicle" package="cantera" visibility="public" xPosition="515.0" yPosition="459.0">
+      <Fields>
+        <Field name="vehicleType" type="String" visibility="private"/>
+        <Field name="carRegistration" type="String" visibility="private"/>
+        <Field name="driver" type="Driver" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Employee" package="cantera" visibility="public" xPosition="39.0" yPosition="414.0">
+      <Fields>
+        <Field name="user" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="idEmployee" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Request" package="cantera" visibility="public" xPosition="883.0" yPosition="286.0">
+      <Fields>
+        <Field name="requestNumber" type="String" visibility="private"/>
+        <Field name="product" type="Product[]" visibility="private"/>
+        <Field name="RequestStatus" type="String" visibility="private"/>
+        <Field name="requestDay" type="Date" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Interface name="PhysicalPersonInterface" package="cantera" visibility="public" xPosition="374.0" yPosition="241.0">
+      <Methods/>
+    </Interface>
+    <Interface name="BusinessInterface" package="cantera" visibility="public" xPosition="583.0" yPosition="241.0">
+      <Methods/>
+    </Interface>
+    <Class name="PhysicalPerson" package="" visibility="public" xPosition="385.0" yPosition="111.0">
+      <Fields>
+        <Field name="idCustomer" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Driver" package="" visibility="public" xPosition="216.0" yPosition="464.0">
+      <Fields>
+        <Field name="license" type="boolean" visibility="private"/>
+        <Field name="idDriver" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Explosion" package="" visibility="public" xPosition="1094.0" yPosition="358.0">
+      <Fields>
+        <Field name="explosionTime" type="Date" visibility="private"/>
+        <Field name="quadrant" type="String[][]" visibility="private"/>
+        <Field name="requestQuantity" type="int" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Contact" package="" visibility="public" xPosition="140.0" yPosition="15.0">
+      <Fields>
+        <Field name="name" type="String" visibility="private"/>
+        <Field name="address" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="phone" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Enum name="PaymentMethods" package="" visibility="public" xPosition="1094.0" yPosition="35.0">
+      <Literals>
+        <Literal name="CASH"/>
+        <Literal name="SINPEMOVIL"/>
+        <Literal name="DEBITCARD"/>
+      </Literals>
+    </Enum>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="consist" source="Explosion" target="cantera.Request" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="have" source="cantera.VehicleRegistration" target="cantera.Vehicle" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="consist" source="cantera.Request" target="cantera.Product" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="cantera.Applicant" target="cantera.BusinessInterface"/>
+    <HasRelation name="have" source="cantera.Billing" target="PaymentMethods" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="PhysicalPerson" target="cantera.PhysicalPersonInterface"/>
+    <IsRelation name="is" source="Driver" target="cantera.Person"/>
+    <HasRelation name="have" source="cantera.Person" target="Contact" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <UseRelation name="depends" source="cantera.VehicleRegistration" target="cantera.Request" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="have" source="cantera.Business" target="Contact" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="PhysicalPerson" target="cantera.Person"/>
+    <HasRelation name="consist" source="cantera.Request" target="cantera.Applicant" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="cantera.Employee" target="cantera.Person"/>
+    <UseRelation name="" source="cantera.Billing" target="cantera.Request" sourceCardinality="1..1" targetCardinality="1..*"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="cantera.Business" target="cantera.BusinessInterface"/>
+    <UseRelation name="" source="cantera.SandProject" target="cantera.Billing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="cantera.Applicant" target="cantera.PhysicalPersonInterface"/>
+    <HasRelation name="have" source="cantera.Vehicle" target="Driver" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
