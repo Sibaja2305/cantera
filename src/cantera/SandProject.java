@@ -14,11 +14,12 @@ import cantera.Product;
 public class SandProject {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static Contact[] contact = new Contact[100];
 
     public void menu() throws IOException {
-        int j = 0;
+
         int exit = 0;
-        Contact[] contact = new Contact[100];
+
         int opcion = 0;
         System.out.println("1= Registar cliente\n2= Registrar solicitud\n"
                 + "3= Registro de entrada y salida de vehiculo\n"
@@ -27,15 +28,32 @@ public class SandProject {
         opcion = Integer.parseInt(br.readLine());
         switch (opcion) {
             case 1:
-                if (j <= contact.length) {
-                    Contact p = registroPersonas();
-                    contact[j] = p;
-                    j++;
+                int i = 0;
+                Contact p = registerPerson();
+                for (i = 0; i < contact.length; i++) {
+                     if (contact[i] == null) {
+                        contact[i] = p;
+
+                        System.out.println(i);
+                        break;
+
+                    }
                 }
+                   
+                   
+
+                  
+
+                System.out.println(i);
+                for (i = 0; i < contact.length; i++) {
+
+                    System.out.println(contact[i]);
+                }
+
                 menu();
                 break;
             case 2:
-             productRequest();
+                productRequest();
                 menu();
                 break;
             case 3:
@@ -59,6 +77,7 @@ public class SandProject {
                 break;
 
         }
+
     }
 
     public boolean verifica(Employee listUser[], String userResponse, String passwordResponse) {
@@ -77,7 +96,7 @@ public class SandProject {
         String userResponse = null;
         String passwordResponse = null;
         Employee listUser[] = new Employee[4];
-        Employee employee1 = new Employee("1", "1234", "118760208");
+        Employee employee1 = new Employee("118760208", "1234", "Kevin Sibaja Granados");
         Employee employee2 = new Employee("2", "5678", "604860159");
         Employee employee3 = new Employee("3", "4321", "604760806");
         Employee employee4 = new Employee("4", "8765", "111111111");
@@ -111,8 +130,8 @@ public class SandProject {
         }
     }
 
-    public static Contact registroPersonas() throws IOException {
-        boolean h = true;
+    public static Contact registerPerson() throws IOException {
+
         System.out.println("Nombre del cliente:");
         String name = br.readLine();
         System.out.println("Identificacion DNI: ");
@@ -135,26 +154,26 @@ public class SandProject {
                 System.out.println("el cliente esta registrado");
                 correct = true;
             } else {
-                correct=false;
+                correct = false;
                 System.out.println("el cliente no esta registrado");
                 personRequest();
             }
         }
-        if (correct=true) {
+        if (correct = true) {
             productRequest();
         }
     }
 
     public void productRequest() throws IOException {
-       
+
         System.out.println("tipo de material");
         String materialType = br.readLine();
         System.out.println("Cantida de material(Toneladas)");
         double quantity = Double.parseDouble(br.readLine());
         System.out.println("Precio");
         double price = Double.parseDouble(br.readLine());
-        
-         Product product=new Product(materialType,quantity,price);
+
+        Product product = new Product(materialType, quantity, price);
         System.out.println(product);
 
     }

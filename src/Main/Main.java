@@ -17,7 +17,11 @@ import cantera.SandProject;
 
 /**
  *
- * @author Hp EliteBook
+ * @author Kevin Sibaja Granados
+ * @author Yoradany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * 
  */
 public class Main {
 

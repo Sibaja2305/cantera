@@ -1,7 +1,16 @@
 package cantera;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author Kevin Sibaja Granados
+ * @author Yoradany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase contiene los atributos para la seccion del proyecto para registrar
+ * el vehiculo que viene a recoger la cargas, contiene su constructores, get y set
+ * y toString.
+ */
 public class VehicleRegistration {
 
     private Date entryTime;
