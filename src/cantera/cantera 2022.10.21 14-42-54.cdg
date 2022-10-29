@@ -87,12 +87,6 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Interface name="PhysicalPersonInterface" package="cantera" visibility="public" xPosition="374.0" yPosition="241.0">
-      <Methods/>
-    </Interface>
-    <Interface name="BusinessInterface" package="cantera" visibility="public" xPosition="583.0" yPosition="241.0">
-      <Methods/>
-    </Interface>
     <Class name="PhysicalPerson" package="" visibility="public" xPosition="385.0" yPosition="111.0">
       <Fields>
         <Field name="idCustomer" type="String" visibility="private"/>
@@ -117,16 +111,22 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Contact" package="" visibility="public" xPosition="140.0" yPosition="15.0">
+    <Class name="Contact" package="" visibility="public" xPosition="118.0" yPosition="5.0">
       <Fields>
-        <Field name="name" type="String" visibility="private"/>
         <Field name="address" type="String" visibility="private"/>
         <Field name="email" type="String" visibility="private"/>
+        <Field name="name" type="String" visibility="private"/>
         <Field name="phone" type="String" visibility="private"/>
       </Fields>
       <Constructors/>
       <Methods/>
     </Class>
+    <Interface name="PhysicalPersonInterface" package="cantera" visibility="public" xPosition="374.0" yPosition="241.0">
+      <Methods/>
+    </Interface>
+    <Interface name="BusinessInterface" package="cantera" visibility="public" xPosition="583.0" yPosition="241.0">
+      <Methods/>
+    </Interface>
     <Enum name="PaymentMethods" package="" visibility="public" xPosition="1094.0" yPosition="35.0">
       <Literals>
         <Literal name="CASH"/>
@@ -136,23 +136,23 @@
     </Enum>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="consist" source="Explosion" target="cantera.Request" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="consist" source="cantera.Request" target="cantera.Applicant" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
     <HasRelation name="have" source="cantera.VehicleRegistration" target="cantera.Vehicle" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <HasRelation name="consist" source="cantera.Request" target="cantera.Product" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="cantera.Applicant" target="cantera.BusinessInterface"/>
-    <HasRelation name="have" source="cantera.Billing" target="PaymentMethods" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="PhysicalPerson" target="cantera.PhysicalPersonInterface"/>
     <IsRelation name="is" source="Driver" target="cantera.Person"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="cantera.Business" target="cantera.BusinessInterface"/>
     <HasRelation name="have" source="cantera.Person" target="Contact" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
     <UseRelation name="depends" source="cantera.VehicleRegistration" target="cantera.Request" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="have" source="cantera.Business" target="Contact" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="PhysicalPerson" target="cantera.Person"/>
-    <HasRelation name="consist" source="cantera.Request" target="cantera.Applicant" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
-    <IsRelation name="is" source="cantera.Employee" target="cantera.Person"/>
-    <UseRelation name="" source="cantera.Billing" target="cantera.Request" sourceCardinality="1..1" targetCardinality="1..*"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="cantera.Business" target="cantera.BusinessInterface"/>
-    <UseRelation name="" source="cantera.SandProject" target="cantera.Billing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="have" source="cantera.Billing" target="PaymentMethods" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="PhysicalPerson" target="cantera.PhysicalPersonInterface"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="cantera.Applicant" target="cantera.PhysicalPersonInterface"/>
+    <UseRelation name="" source="cantera.SandProject" target="cantera.Billing" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="cantera.Applicant" target="cantera.BusinessInterface"/>
+    <HasRelation name="consist" source="cantera.Request" target="cantera.Product" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
     <HasRelation name="have" source="cantera.Vehicle" target="Driver" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <UseRelation name="" source="cantera.Billing" target="cantera.Request" sourceCardinality="1..1" targetCardinality="1..*"/>
+    <IsRelation name="is" source="cantera.Employee" target="cantera.Person"/>
+    <HasRelation name="have" source="cantera.Business" target="Contact" type="Default" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <HasRelation name="consist" source="Explosion" target="cantera.Request" type="Composition" sourceCardinality="0..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="PhysicalPerson" target="cantera.Person"/>
   </ClassDiagramRelations>
 </ClassDiagram>
