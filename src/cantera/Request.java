@@ -6,7 +6,7 @@ public class Request {
 
     private String requestNumber;
 
-    private Product[] product=new Product [100];
+    private Product product;
 
     private String RequestStatus;
 
@@ -15,7 +15,7 @@ public class Request {
     public Request() {
     }
 
-    public Request(String requestNumber, Product[] product, String RequestStatus, Date requestDay) {
+    public Request(String requestNumber, Product product, String RequestStatus, Date requestDay) {
         this.requestNumber = requestNumber;
         this.product = product;
         this.RequestStatus = RequestStatus;
@@ -39,14 +39,14 @@ public class Request {
     /**
      * @return the product
      */
-    public Product[] getProduct() {
+    public Product getProduct() {
         return product;
     }
 
     /**
      * @param product the product to set
      */
-    public void setProduct(Product[] product) {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
@@ -80,9 +80,8 @@ public class Request {
 
     @Override
     public String toString() {
-        return "Request{" + "requestNumber=" + requestNumber + ", product=" 
-                + product + ", RequestStatus=" + RequestStatus + ", requestDay=" 
-                + requestDay + '}';
+        return "Request{" + "requestNumber=" + requestNumber + ", product=" + product + ", RequestStatus=" + RequestStatus + ", requestDay=" + requestDay + '}';
     }
-    
+
+   
 }

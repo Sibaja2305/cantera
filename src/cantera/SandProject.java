@@ -10,11 +10,14 @@ import cantera.Applicant;
 import cantera.VehicleRegistration;
 import cantera.Person;
 import cantera.Product;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class SandProject {
 
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static Contact[] contact = new Contact[100];
+    static PhysicalPerson[] contact = new PhysicalPerson[100];
+    static Request[] requests = new Request[100];
 
     public void menu() throws IOException {
 
@@ -28,32 +31,64 @@ public class SandProject {
         opcion = Integer.parseInt(br.readLine());
         switch (opcion) {
             case 1:
-                int i = 0;
-                Contact p = registerPerson();
-                for (i = 0; i < contact.length; i++) {
-                     if (contact[i] == null) {
-                        contact[i] = p;
+                int opcion2;
+                System.out.println("1= registrar cliente persona\n2= registrar cliente empresa\n"
+                        + "3= Mostrar clientes registrados");
+                System.out.println("Seleccione una opción");
 
-                        System.out.println(i);
+                opcion2 = Integer.parseInt(br.readLine());
+
+                switch (opcion2) {
+
+                    case 1:
+                        int i = 0;
+                        PhysicalPerson p = registerCustumer();
+                        for (i = 0; i < contact.length; i++) {
+                            if (contact[i] == null) {
+                                contact[i] = p;
+                                System.out.println("Se registro el cliente: " + contact[i].getContact());
+                                System.out.println("Con DNI: " + contact[i].getDNI());
+                                System.out.println("id del cliente: " + contact[i].getIdCustomer());
+
+                                break;
+                            }
+                        }
+                        menu();
                         break;
 
-                    }
-                }
-                   
-                   
-
-                  
-
-                System.out.println(i);
-                for (i = 0; i < contact.length; i++) {
-
-                    System.out.println(contact[i]);
+                    case 2:
+                        // No podemos guardar clientes y empresas en un mismo vector
+                    /**
+                     * 
+                     *
+                     * Business a = registerBusiness(); for (i = 0; i <
+                     * contact.length; i++) { if (contact[i] == null) {
+                     * contact[i] = a; System.out.println("Se registro el
+                     * cliente: " + contact[i].getContacto());
+                     * System.out.println("Con DNI: " + contact[i].getDNI());
+                     * System.out.println("Direccion: " +
+                     * contact[i].getIdCustomer());
+                     *
+                     * break; } } menu();
+                     *
+                     * break;
+                     */
+                    case 3:
+                        for (i = 0; i < contact.length; i++) {
+                            if (contact[i] != null) {
+                                System.out.println(" cliente " + i + 1 + "\n nombre: " + contact[i].getContact().getName() + "\n Id del cliente: " + contact[i].getIdCustomer()
+                                        + "\n Identificacion: " + contact[i].getDNI() + "\n Direccion: " + contact[i].getContact().getAddress()
+                                        + "\n Telefono: " + contact[i].getContact().getPhone() + "\n Email: " + contact[i].getContact().getEmail());
+                                System.out.println("-----------------------------");
+                            }
+                        }
+                        break;
                 }
 
                 menu();
                 break;
             case 2:
-                productRequest();
+                checkCustomer(contact);
                 menu();
                 break;
             case 3:
@@ -75,23 +110,28 @@ public class SandProject {
             default:
                 System.out.println("Opcion no disponible, vuelva a digitar otra opcion");
                 break;
-
         }
-
     }
-
-    public boolean verifica(Employee listUser[], String userResponse, String passwordResponse) {
+    /**
+     * Metodo para vareficar si el usuario y contraseña digitados son correctos
+     * @param listUser
+     * @param userResponse
+     * @param passwordResponse
+     * @return 
+     */
+    public boolean checkUser(Employee listUser[], String userResponse, String passwordResponse) {
 
         for (int i = 0; i < listUser.length; i++) {
             if (listUser[i].getPassword().equals(passwordResponse) && listUser[i].getUser().equals(userResponse)) {
                 return true;
-
             }
-
         }
         return false;
     }
-
+    /**
+     * Metodo para solicitar usuario y contraseña
+     * @throws IOException 
+     */
     public void login() throws IOException {
         String userResponse = null;
         String passwordResponse = null;
@@ -117,7 +157,7 @@ public class SandProject {
             System.out.println("Escriba su contraseña");
             passwordResponse = br.readLine();
 
-            if (verifica(listUser, userResponse, passwordResponse)) {
+            if (checkUser(listUser, userResponse, passwordResponse)) {
                 correct = true;
 
             } else {
@@ -129,53 +169,110 @@ public class SandProject {
             menu();
         }
     }
-
+    /**
+     * Metodo para registrar la informacion de contacto del cliente
+     * @return
+     * @throws IOException 
+     */
     public static Contact registerPerson() throws IOException {
 
         System.out.println("Nombre del cliente:");
         String name = br.readLine();
-        System.out.println("Identificacion DNI: ");
-        String id = br.readLine();
-        System.out.println("Dirrecion:");
+        System.out.println("Direccion: ");
         String address = br.readLine();
+        System.out.println("Email:");
+        String email = br.readLine();
         System.out.println("Numero de telefono:");
         String phone = br.readLine();
-        return new Contact(name, id, address, phone);
+        return new Contact(name, address, email, phone);
+    }
+    /**
+     * Metodo para registrar una persona cliente
+     * @return
+     * @throws IOException 
+     */
+    public static PhysicalPerson registerCustumer() throws IOException {
 
+        System.out.println("id del cliente:");
+        String idCustomer = br.readLine();
+        System.out.println("Identificacion DNI: ");
+        String DNI = br.readLine();
+
+        return new PhysicalPerson(idCustomer, DNI, registerPerson());
+    }
+/**
+ * Metodo para registrar una empresa cliente
+ * @return
+ * @throws IOException 
+ */
+    public static Business registerBusiness() throws IOException {
+
+        System.out.println("CIF del cliente:");
+        String CIF = br.readLine();
+        System.out.println("Nombre de empresa: ");
+        String nameBusiness = br.readLine();
+
+        return new Business(CIF, nameBusiness, registerPerson());
     }
 
-    public void personRequest() throws IOException {
-        boolean correct = true;
-        System.out.println("Digite su identificacion");
-        String identification = br.readLine();
-        //todavia falta arreglar con el arreglo de registrar cliente
-        for (int i = 0; i < 10; i++) {
-            if (identification.equals(br)) {
-                System.out.println("el cliente esta registrado");
-                correct = true;
-            } else {
-                correct = false;
-                System.out.println("el cliente no esta registrado");
-                personRequest();
-            }
-        }
-        if (correct = true) {
-            productRequest();
-        }
-    }
-
-    public void productRequest() throws IOException {
+   
+/**
+ * Registra los atributos del producto que se va a registrar en la solicitud
+ * @return
+ * @throws IOException 
+ */
+    public static Product productRequest() throws IOException {
 
         System.out.println("tipo de material");
         String materialType = br.readLine();
-        System.out.println("Cantida de material(Toneladas)");
-        double quantity = Double.parseDouble(br.readLine());
-        System.out.println("Precio");
-        double price = Double.parseDouble(br.readLine());
+        double quantity = 0;
+        double price = 0;
+        try {
+            System.out.println("Cantida de material(Toneladas)");
+            quantity = Double.parseDouble(br.readLine());
+            System.out.println("Precio");
+            price = Double.parseDouble(br.readLine());
+        } catch (NumberFormatException numberFormatException) {
+            System.out.println("Caracteres digitados no permitidos");
+            productRequest();
+        }
+        return new Product(materialType, quantity, price);
+    }
+/**
+ * Metodo para registrar una solicitud
+ * @return
+ * @throws IOException 
+ */
+    public static Request registerRequest() throws IOException {
+        System.out.println("Numero de solicitud");
+        String requestNumber = br.readLine();
+        System.out.println("Estado de la solicitud");
+        String RequestStatus = br.readLine();
+        Date requestDay = new Date();
+        System.out.println(requestDay);
+       
+       // Problema al guardar una solicitud y que este relacionada con el cliente
 
-        Product product = new Product(materialType, quantity, price);
-        System.out.println(product);
+        return new Request(requestNumber, productRequest(), RequestStatus, requestDay);
+    }
+/**
+ * Metodo para verificar si el cliente que hara la solicitud se encuentra registrado
+ * @param contact
+ * @throws IOException 
+ */
+    public void checkCustomer(PhysicalPerson contact[]) throws IOException {
+        System.out.println("DNI del cliente");
+        String DNIResponse = br.readLine();
+        for (int i = 0; i < contact.length; i++) {
+            if (contact[i].getDNI().equals(DNIResponse)) {
+                registerRequest();
+                break;
+            }else
+                System.out.println("El cliente no se encuentra registrado");
+            menu();
 
+        }
+  
     }
 
 }
