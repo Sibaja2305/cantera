@@ -6,9 +6,14 @@ package cantera;
 
 /**
  *
- * @author Hp EliteBook
+ * @author yorda
  */
 public interface PhysicalPersonInterface {
+
+    /**
+     * @return the DNI
+     */
+    String getDNI();
 
     /**
      * @return the idCustomer
@@ -16,8 +21,15 @@ public interface PhysicalPersonInterface {
     String getIdCustomer();
 
     /**
+     * @param DNI the DNI to set
+     */
+    void setDNI(String DNI);
+
+    /**
      * @param idCustomer the idCustomer to set
      */
     void setIdCustomer(String idCustomer);
+
+    String toString();
     
 }

@@ -14,6 +14,7 @@ import cantera.Applicant;
 import cantera.VehicleRegistration;
 import cantera.Person;
 import cantera.SandProject;
+import java.text.ParseException;
 
 /**
  *
@@ -30,7 +31,7 @@ public class Main {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, ParseException {
      SandProject sandProject=new SandProject();
        sandProject.login();
         

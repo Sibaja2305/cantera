@@ -3,9 +3,10 @@ package cantera;
 
 import cantera.Person;
 
-public class PhysicalPerson extends Person implements  PhysicalPersonInterface {
+public class PhysicalPerson extends Person implements PhysicalPersonInterface {
 
     private String idCustomer;
+    private String DNI;
 
     public PhysicalPerson() {
     }
@@ -35,10 +36,27 @@ public class PhysicalPerson extends Person implements  PhysicalPersonInterface {
         this.idCustomer = idCustomer;
     }
 
+    /**
+     * @return the DNI
+     */
+    @Override
+    public String getDNI() {
+        return DNI;
+    }
+
+    /**
+     * @param DNI the DNI to set
+     */
+    @Override
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
     @Override
     public String toString() {
-        return super.toString()+"PhysicalPerson{" + "idCustomer=" + idCustomer 
-                + '}';
+        return "PhysicalPerson{" + "idCustomer=" + idCustomer + ", DNI=" + DNI + '}';
     }
+
+   
     
 }

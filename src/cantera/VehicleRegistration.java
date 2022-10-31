@@ -13,9 +13,7 @@ import java.util.Date;
  */
 public class VehicleRegistration {
 
-    private Date entryTime;
 
-    private Date exitTime;
 
     private Date entryDate;
 
@@ -28,42 +26,11 @@ public class VehicleRegistration {
     public VehicleRegistration() {
     }
 
-    public VehicleRegistration(Date entryTime, Date exitTime, Date entryDate, 
-            Date exitDate, Vehicle vehicle, double amountLoaded) {
-        this.entryTime = entryTime;
-        this.exitTime = exitTime;
+    public VehicleRegistration(Date entryDate, Date exitDate, Vehicle vehicle, double amountLoaded) {
         this.entryDate = entryDate;
         this.exitDate = exitDate;
         this.vehicle = vehicle;
         this.amountLoaded = amountLoaded;
-    }
-
-    /**
-     * @return the entryTime
-     */
-    public Date getEntryTime() {
-        return entryTime;
-    }
-
-    /**
-     * @param entryTime the entryTime to set
-     */
-    public void setEntryTime(Date entryTime) {
-        this.entryTime = entryTime;
-    }
-
-    /**
-     * @return the exitTime
-     */
-    public Date getExitTime() {
-        return exitTime;
-    }
-
-    /**
-     * @param exitTime the exitTime to set
-     */
-    public void setExitTime(Date exitTime) {
-        this.exitTime = exitTime;
     }
 
     /**
@@ -124,10 +91,8 @@ public class VehicleRegistration {
 
     @Override
     public String toString() {
-        return "VehicleRegistration{" + "entryTime=" + entryTime + ", exitTime=" 
-                + exitTime + ", entryDate=" + entryDate + ", exitDate=" 
-                + exitDate + ", vehicle=" + vehicle + ", amountLoaded=" 
-                + amountLoaded + '}';
+        return "VehicleRegistration{" + "entryDate=" + entryDate + ", exitDate=" + exitDate + ", vehicle=" + vehicle + ", amountLoaded=" + amountLoaded + '}';
     }
-    
+
+   
 }
