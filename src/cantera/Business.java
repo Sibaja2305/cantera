@@ -1,5 +1,14 @@
 package cantera;
-
+/**
+ * 
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase contiene todos los atributos que se necesita para poder registrar 
+ *  empresas en la base de datos de la cantera (arreglo) y su repectivo 
+ * contructor para guardar los datos.
+ */
 public class Business implements  BussinessInterface {
 
     private String CIF;

@@ -1,5 +1,14 @@
 package cantera;
-
+/**
+ * 
+ *  @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase se utilizara para registrar el producto de la cantera que va
+ * necesitar el cliente a la hora de hacer la solicitud, como el tipo de material
+ *cantidad y precio.
+ */
 public class Product {
 
     private String materialType;

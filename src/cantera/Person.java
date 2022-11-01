@@ -1,5 +1,13 @@
 package cantera;
-
+/**
+ * 
+ *  @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta case contiene los atributos de Contact y algunos otros que se va a 
+ * necesitar para cada persona que este en la empresa o cliente.
+ */
 public class Person {
 
     private String DNI;

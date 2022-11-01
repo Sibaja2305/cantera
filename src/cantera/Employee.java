@@ -1,5 +1,13 @@
 package cantera;
-
+/**
+ * 
+ *  @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase contiene los datos que se necesitan para un empleado que trabaje
+ * en la cantera, para que pueda ingresar al menu y con una contraseña y usuario.
+ */
 public class Employee extends Person {
 
     private String user;

@@ -1,5 +1,15 @@
 package cantera;
-
+/**
+ * 
+ *  @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase contiene los atributos que contiene un vehiculo que va a registrar
+ * cuando se el cliente mande a un conductor a recoger el material que solicito
+ * ya que este dato quedara guardado para saber la matricula del vehiculo y el 
+ * tipo de vehiculo.
+ */
 public class Vehicle {
 
     private String vehicleType;

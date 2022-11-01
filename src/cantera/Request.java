@@ -1,7 +1,16 @@
 package cantera;
 
 import java.util.Date;
-
+/**
+ * 
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase es utilizada para crear la solicitud del cliente y asi registrarlo
+ * en un arreglo donde quedara guardado esa solicutd que hizo el cliente o la 
+ * empresa.
+ */
 public class Request {
 
     private String requestNumber;

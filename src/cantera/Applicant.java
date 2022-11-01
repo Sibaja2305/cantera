@@ -1,6 +1,16 @@
 package cantera;
 
 import java.util.logging.Logger;
+/**
+ * 
+ * @author Kevin Sibaja Granados
+ * @author Yoradany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase applicant se va a implementar de las 2 interfaces donde va a traer
+ * los atributos de las clase PhysicalPerson y Bussiness lo cuales se utilizaran
+ * para el registro de cliente.
+ */
 
 public class Applicant implements PhysicalPersonInterface, BussinessInterface {
 

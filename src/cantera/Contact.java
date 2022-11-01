@@ -1,5 +1,14 @@
 package cantera;
-
+/**
+ * 
+ *  @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase se utilizara para registrar la imformacion de cada persona o
+ * cliente que pueda tener la cantera, ya que contiene atributos de imformacion
+ * personal y sus constructores.
+ */
 public class Contact {
 
     private String name;

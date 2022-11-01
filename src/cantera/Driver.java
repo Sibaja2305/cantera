@@ -2,7 +2,16 @@ package cantera;
 
 
 import cantera.Person;
-
+/**
+ * 
+ *  @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase Driver se creo para el registro del conductor que viene a recoger 
+ * la solicitud del cliente. Se extiende de la clase Person y hereda atributos 
+ * que se necesitara ene sta clase.
+ */
 public class Driver extends Person {
 
     private boolean license;

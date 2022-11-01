@@ -2,7 +2,16 @@ package cantera;
 
 
 import java.util.Date;
-
+ /**
+  * 
+  *  @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase se utilizara para la creacion de la explosiones que hara
+ * conforme las solicitudes de los cliente vayan ingresando al arreglo, ya que
+ * van hacer a una cierta hora que se haran las explosiones.
+  */
 public class Explosion {
 
     private Date explosionTime;

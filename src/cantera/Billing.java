@@ -1,4 +1,14 @@
 package cantera;
+/**
+ * 
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta clase contiene los atributos y contructores para poder crear la factura
+ * que va a tener cada cliente a la hora de finalizar sus 25 dias se le hara
+ * la factura que podra pagar con todas las solicitudes de los 25 dias.
+ */
 
 public class Billing {
 

@@ -6,7 +6,12 @@ package cantera;
 
 /**
  *
- * @author Hp EliteBook
+ * @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta interfaz se utilizaria para llamar todos los atributos que contiene la
+ * clase Bussiness para despues pasarlos a Applicant.
  */
 public interface BussinessInterface {
 

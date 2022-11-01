@@ -6,7 +6,12 @@ package cantera;
 
 /**
  *
- * @author yorda
+ *  @author Kevin Sibaja Granados
+ * @author Yordany Navarro Hernandez
+ * @author Diego Herrera Lopez
+ * @author Jefferson Zapata Ortega
+ * Esta interfaz se utilizara para implementar los atributos de PhysicalPerson
+ * a Applicant para utilizarlos en esa clase.
  */
 public interface PhysicalPersonInterface {
 

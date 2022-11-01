@@ -19,9 +19,12 @@ import java.text.ParseException;
 /**
  *
  * @author Kevin Sibaja Granados
- * @author Yoradany Navarro Hernandez
+ * @author Yordany Navarro Hernandez
  * @author Diego Herrera Lopez
  * @author Jefferson Zapata Ortega
+ * En la clase Main se llama a la clase SandProject que contiene todos los
+ * metodos que se utilizan para el programa, se llama el metodo login y con este
+ * metodo se puede ingresar al menu donde se puede utilizar los otros metodos.
  * 
  */
 public class Main {
