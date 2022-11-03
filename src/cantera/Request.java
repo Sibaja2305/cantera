@@ -20,15 +20,17 @@ public class Request {
     private String RequestStatus;
 
     private Date requestDay;
+    private String idCustomerRequest;
 
     public Request() {
     }
 
-    public Request(String requestNumber, Product product, String RequestStatus, Date requestDay) {
+    public Request(String requestNumber, Product product, String RequestStatus, Date requestDay, String idCustomerRequest) {
         this.requestNumber = requestNumber;
         this.product = product;
         this.RequestStatus = RequestStatus;
         this.requestDay = requestDay;
+        this.idCustomerRequest = idCustomerRequest;
     }
 
     /**
@@ -87,10 +89,23 @@ public class Request {
         this.requestDay = requestDay;
     }
 
-    @Override
-    public String toString() {
-        return "Request{" + "requestNumber=" + requestNumber + ", product=" + product + ", RequestStatus=" + RequestStatus + ", requestDay=" + requestDay + '}';
+    /**
+     * @return the idCustomerRequest
+     */
+    public String getIdCustomerRequest() {
+        return idCustomerRequest;
     }
 
-   
+    /**
+     * @param idCustomerRequest the idCustomerRequest to set
+     */
+    public void setIdCustomerRequest(String idCustomerRequest) {
+        this.idCustomerRequest = idCustomerRequest;
+    }
+
+    @Override
+    public String toString() {
+        return "Request{" + "requestNumber=" + requestNumber + ", product=" + product + ", RequestStatus=" + RequestStatus + ", requestDay=" + requestDay + ", idCustomerRequest=" + idCustomerRequest + '}';
+    }
+
 }

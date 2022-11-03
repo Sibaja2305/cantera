@@ -131,11 +131,17 @@ public class SandProject {
      * correctos con los que esta en el arreglo de listUser.
      *
      */
-    public boolean checkUser(Employee listUser[], String userResponse, String passwordResponse) {
+    public boolean checkUser(Employee listUser[], String userResponse, String passwordResponse) throws IOException, ParseException {
 
         for (int i = 0; i < listUser.length; i++) {
-            if (listUser[i].getPassword().equals(passwordResponse) && listUser[i].getUser().equals(userResponse)) {
-                return true;
+   
+                try {
+                if (listUser[i].getPassword().equals(passwordResponse) && listUser[i].getUser().equals(userResponse)) {
+                    return true;
+                }
+            } catch (NullPointerException e) {
+                    System.out.println("Usuario o contraseña incorrecta, intente de nuevo");
+                login();
             }
         }
         return false;
@@ -196,31 +202,30 @@ public class SandProject {
         Employee employee1 = new Employee("118760208", "1234", "118760208", user);
         listUser[0] = employee1;
 
-        boolean correct = true;
+      
 
-        do {
+      
+           try {
             Scanner teclado = new Scanner(System.in);
             System.out.println("Bienvenido al sistema de Quebradores del Sur");
-
+            
             System.out.println("Escriba su usuario");
             userResponse = br.readLine();
             System.out.println("Escriba su contraseña");
             passwordResponse = br.readLine();
-
+            
             if (checkUser(listUser, userResponse, passwordResponse)) {
-                correct = true;
-
-            } else {
-                System.out.println("Usuario o contraseña es incorrecto, vuelva a intentarlo");
-                correct = false;
-            }
-        } while (correct == false);
-        if (correct) {
-            System.out.println("bienvenido " + userResponse);
-
-            menu();
-
+                System.out.println("Bienvenido " + userResponse);
+                
+                menu();
+                
+            }            
+        } catch (IOException iOException) {
+        } catch (ParseException parseException) {
         }
+            
+      
+        
     }
 
     /**
@@ -376,6 +381,8 @@ public class SandProject {
      * @throws IOException
      */
     public static Request registerRequest() throws IOException {
+        System.out.println("Id del cliente al que pertenece la solicitud");
+        String idCustomerRequest = br.readLine();
         System.out.println("Numero de solicitud");
         String requestNumber = br.readLine();
         System.out.println("Estado de la solicitud");
@@ -383,7 +390,21 @@ public class SandProject {
         Date requestDay = new Date();
 
         // Problema al guardar una solicitud y que este relacionada con el cliente
-        return new Request(requestNumber, productRequest(), RequestStatus, requestDay);
+        return new Request(requestNumber, productRequest(), RequestStatus, requestDay, idCustomerRequest);
+    }
+
+    public void saveRequest() throws IOException {
+        int i = 0;
+        Request p = registerRequest();
+        for (i = 0; i < requests.length; i++) {
+            if (requests[i] == null) {
+                requests[i] = p;
+
+                System.out.println("Se registro la solicitud: " + requests[i].getRequestNumber());
+
+                break;
+            }
+        }
     }
 
     /**
@@ -395,11 +416,13 @@ public class SandProject {
      * @throws IOException
      */
     public void checkCustomer(Applicant contact[]) throws IOException, ParseException {
-        System.out.println("Id del cliente");
+        System.out.println("Id del cliente para comprobar su registro");
         String idResponse = br.readLine();
         for (int i = 0; i < contact.length; i++) {
             if (contact[i].getIdCustomer().equals(idResponse)) {
-                registerRequest();
+                System.out.println("El cliente si esta registrado \n"
+                        + "Registro de la solicitud");
+                saveRequest();
                 break;
             } else {
                 System.out.println("El cliente no se encuentra registrado");
