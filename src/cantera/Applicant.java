@@ -36,64 +36,87 @@ public class Applicant implements PhysicalPersonInterface, BussinessInterface {
         this.idCustomer = idCustomer;
         this.DNI = DNI;
     }
-    
 
-    
-    @Override
-    public void setIdCustomer(String idCustomer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+    /**
+     * @return the CIF
+     */
     public String getCIF() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return CIF;
     }
 
-    @Override
-    public Contact getContact() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public String getNameBusiness() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+    /**
+     * @param CIF the CIF to set
+     */
     public void setCIF(String CIF) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.CIF = CIF;
     }
 
-    @Override
-    public void setContact(Contact contact) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * @return the nameBusiness
+     */
+    public String getNameBusiness() {
+        return nameBusiness;
     }
 
-    @Override
+    /**
+     * @param nameBusiness the nameBusiness to set
+     */
     public void setNameBusiness(String nameBusiness) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.nameBusiness = nameBusiness;
     }
 
-    @Override
-    public String getDNI() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * @return the contact
+     */
+    public Contact getContact() {
+        return contact;
     }
 
-    @Override
-    public void setDNI(String DNI) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * @param contact the contact to set
+     */
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
-
-    @Override
+    /**
+     * @return the idCustomer
+     */
     public String getIdCustomer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-     @Override
-    public String toString() {
-        return "Applicant{" + "CIF=" + CIF + ", nameBusiness=" + nameBusiness + ", contact=" + contact + ", idCustomer=" + idCustomer + ", DNI=" + DNI + '}';
+        return idCustomer;
     }
 
+    /**
+     * @param idCustomer the idCustomer to set
+     */
+    public void setIdCustomer(String idCustomer) {
+        this.idCustomer = idCustomer;
+    }
+
+    /**
+     * @return the DNI
+     */
+    public String getDNI() {
+        return DNI;
+    }
+
+    /**
+     * @param DNI the DNI to set
+     */
+    public void setDNI(String DNI) {
+        this.DNI = DNI;
+    }
+
+    @Override
+    public String toString() {
+        return "Applicant{" + "CIF=" + CIF + ", nameBusiness=" + nameBusiness +
+                ", contact=" + contact + ", idCustomer=" + idCustomer + ", DNI="
+                + DNI + '}';
+    }
+    
+
+    
+    
     
     
 

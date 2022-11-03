@@ -15,8 +15,20 @@ public class Employee extends Person {
     private String password;
 
     private String idEmployee;
+    
 
     public Employee() {
+    }
+
+    public Employee(String user, String password, String DNI, Contact contact) {
+        super(DNI, contact);
+        this.user = user;
+        this.password = password;
+    }
+
+    public Employee(String user, String password) {
+        this.user = user;
+        this.password = password;
     }
 
     public Employee(String user, String password, String idEmployee) {
