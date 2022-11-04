@@ -383,7 +383,7 @@ public class SandProject {
         String RequestStatus = "tramite";
         Date requestDay = new Date();
 
-        // Problema al guardar una solicitud y que este relacionada con el cliente
+       
         return new Request(requestNumber, productRequest(), RequestStatus, requestDay, idCustomerRequest);
     }
 
