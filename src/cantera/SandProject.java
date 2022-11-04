@@ -13,7 +13,6 @@ import cantera.Product;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,6 +29,7 @@ public class SandProject {
     static Applicant[] contact = new Applicant[100];
     static Request[] requests = new Request[100];
     static Employee listUser[] = new Employee[20];
+    static VehicleRegistration vehicleRegistration[] = new VehicleRegistration[100];
 
     /**
      *
@@ -75,26 +75,26 @@ public class SandProject {
                         break;
 
                     case 2:
-
                         saveBusiness();
-
                         menu();
 
                         break;
 
                     case 3:
+
                         showClient();
+                        menu();
                         break;
+
                 }
 
-                menu();
-                break;
             case 2:
                 checkCustomer(contact);
-                menu();
+                  
+   
                 break;
             case 3:
-                vehicleRegistration();
+                checkVehicle(requests);
 
                 menu();
                 break;
@@ -134,13 +134,13 @@ public class SandProject {
     public boolean checkUser(Employee listUser[], String userResponse, String passwordResponse) throws IOException, ParseException {
 
         for (int i = 0; i < listUser.length; i++) {
-   
-                try {
+
+            try {
                 if (listUser[i].getPassword().equals(passwordResponse) && listUser[i].getUser().equals(userResponse)) {
                     return true;
                 }
             } catch (NullPointerException e) {
-                    System.out.println("Usuario o contraseña incorrecta, intente de nuevo");
+                System.out.println("Usuario o contraseña incorrecta, intente de nuevo");
                 login();
             }
         }
@@ -202,30 +202,25 @@ public class SandProject {
         Employee employee1 = new Employee("118760208", "1234", "118760208", user);
         listUser[0] = employee1;
 
-      
-
-      
-           try {
+        try {
             Scanner teclado = new Scanner(System.in);
             System.out.println("Bienvenido al sistema de Quebradores del Sur");
-            
+
             System.out.println("Escriba su usuario");
             userResponse = br.readLine();
             System.out.println("Escriba su contraseña");
             passwordResponse = br.readLine();
-            
+
             if (checkUser(listUser, userResponse, passwordResponse)) {
                 System.out.println("Bienvenido " + userResponse);
-                
+
                 menu();
-                
-            }            
+
+            }
         } catch (IOException iOException) {
         } catch (ParseException parseException) {
         }
-            
-      
-        
+
     }
 
     /**
@@ -360,7 +355,7 @@ public class SandProject {
         double quantity = 0;
         double price = 0;
         try {
-            System.out.println("Cantida de material(Toneladas)");
+            System.out.println("Cantidad de material(Toneladas)");
             quantity = Double.parseDouble(br.readLine());
             System.out.println("Precio");
             price = Double.parseDouble(br.readLine());
@@ -393,7 +388,7 @@ public class SandProject {
         return new Request(requestNumber, productRequest(), RequestStatus, requestDay, idCustomerRequest);
     }
 
-    public void saveRequest() throws IOException {
+    public void saveRequest() throws IOException, ParseException {
         int i = 0;
         Request p = registerRequest();
         for (i = 0; i < requests.length; i++) {
@@ -405,6 +400,10 @@ public class SandProject {
                 break;
             }
         }
+        
+   
+      
+        menu();
     }
 
     /**
@@ -427,7 +426,7 @@ public class SandProject {
             } else {
                 System.out.println("El cliente no se encuentra registrado");
             }
-            menu();
+           
 
         }
 
@@ -452,7 +451,7 @@ public class SandProject {
         } else {
             license = false;
         }
-        System.out.println("id de consuctor");
+        System.out.println("id de conductor");
         String idDriver = br.readLine();
 
         return new Driver(license, idDriver, DNI, registerContact());
@@ -515,5 +514,39 @@ public class SandProject {
 
         return new VehicleRegistration(entryDate, exitDate, registerVehicle(), amountLoaded);
     }
+
+    public void checkVehicle(Request requests[]) throws IOException, ParseException {
+        
+        System.out.println("numero de solitud");
+        String numberRequests = br.readLine();
+        for (int i = 0; i < requests.length; i++) {
+            if (numberRequests.equals(requests[i].getRequestNumber())) {
+                System.out.println("la solicitud si esta creada ");
+                saveVehicle();
+                break;
+               
+            } else {
+                System.out.println("La solicitud no esta almacenado");
+                menu();
+            }
+         
+
+        }
+
+    }
+    public void saveVehicle () throws IOException, ParseException{
+         int i = 0;
+        VehicleRegistration p = vehicleRegistration();
+        for (i = 0; i < vehicleRegistration.length; i++) {
+            if (vehicleRegistration[i] == null) {
+                vehicleRegistration[i] = p;
+
+                System.out.println("Se registro la solicitud: " + requests[i].getRequestNumber());
+
+                break;
+            }
+        }
+    }
+    
 
 }

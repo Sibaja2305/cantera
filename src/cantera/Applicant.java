@@ -31,6 +31,8 @@ public class Applicant implements PhysicalPersonInterface, BussinessInterface {
         this.idCustomer = idCustomer;
     }
 
+   
+
     public Applicant(Contact contact, String idCustomer, String DNI) {
         this.contact = contact;
         this.idCustomer = idCustomer;
