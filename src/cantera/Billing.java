@@ -28,6 +28,12 @@ public class Billing {
         this.BillingNumber = BillingNumber;
     }
 
+    public Billing(double totalPrice, String BillingNumber) {
+        this.totalPrice = totalPrice;
+        this.BillingNumber = BillingNumber;
+    }
+    
+
     /**
      * @return the request
      */

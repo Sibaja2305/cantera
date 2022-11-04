@@ -43,31 +43,31 @@ public class SandProject {
 
         int exit = 0;
 
-        int opcion = 0;
+        int option = 0;
         try {
-            opcion = 0;
-            System.out.println("1= Registar cliente\n2= Registrar solicitud\n"
+            option = 0;
+            System.out.println("1= Registrar clientes\n2= Registrar solicitudes\n"
                     + "3= Registro de entrada y salida de vehiculo\n"
                     + "4= Explosiones de cantera\n5= Facturacion\n"
                     + "6= Registrar usuario\n"
                     + "7= cerrar sesion \n"
                     + "0= Salir");
             System.out.println("Seleccione una opción");
-            opcion = Integer.parseInt(br.readLine());
+            option = Integer.parseInt(br.readLine());
         } catch (NumberFormatException numberFormatException) {
             System.out.println("Por favor, digitar caracteres numerico");
             login();
         }
-        switch (opcion) {
+        switch (option) {
             case 1:
-                int opcion2;
+                int option2;
                 System.out.println("1= registrar cliente persona\n2= registrar cliente empresa\n"
                         + "3= Mostrar clientes registrados");
                 System.out.println("Seleccione una opción");
 
-                opcion2 = Integer.parseInt(br.readLine());
+                option2 = Integer.parseInt(br.readLine());
 
-                switch (opcion2) {
+                switch (option2) {
 
                     case 1:
                         saveCustomer();
@@ -85,7 +85,6 @@ public class SandProject {
                         showClient();
                         menu();
                         break;
-
                 }
 
             case 2:
@@ -98,7 +97,7 @@ public class SandProject {
                 menu();
                 break;
             case 4:
-               
+                showRequest();
                 menu();
                 break;
             case 5:
@@ -381,8 +380,7 @@ public class SandProject {
         String idCustomerRequest = br.readLine();
         System.out.println("Numero de solicitud");
         String requestNumber = br.readLine();
-        System.out.println("Estado de la solicitud");
-        String RequestStatus = br.readLine();
+        String RequestStatus = "tramite";
         Date requestDay = new Date();
 
         // Problema al guardar una solicitud y que este relacionada con el cliente
@@ -421,13 +419,13 @@ public class SandProject {
             for (int i = 0; i < contact.length; i++) {
                 if (contact[i].getIdCustomer().equals(idResponse)) {
                     correct = true;
-                    
+
                     break;
                 } else {
                     correct = false;
-                    
+
                 }
-                
+
             }
             if (correct == true) {
                 System.out.println("El cliente si esta registrado \n"
@@ -435,12 +433,10 @@ public class SandProject {
                 saveRequest();
             }
         } catch (Exception e) {
-       
-            System.out.println("El cliente no se encuentra registrado");
-            menu();
-        
 
-    }
+            menu();
+
+        }
     }
 
     /**
@@ -527,21 +523,21 @@ public class SandProject {
     }
 
     public void checkVehicle(Request requests[]) throws IOException, ParseException {
-          try {
+        try {
             boolean correct = true;
-            System.out.println("numero de solitud");
+            System.out.println("numero de solicitud");
             String numberRequests = br.readLine();
             for (int i = 0; i < requests.length; i++) {
                 if (numberRequests.equals(requests[i].getRequestNumber())) {
                     correct = true;
-                    
+
                     break;
-                    
+
                 } else {
                     correct = false;
-                    
+
                 }
-                
+
             }
             if (correct) {
                 System.out.println("la solicitud si esta registrada ");
@@ -549,12 +545,10 @@ public class SandProject {
             }
         } catch (Exception e) {
             System.out.println("La solicitud no fue encontrada");
-             menu();
+            menu();
         }
-             
-        }
-        
-    
+
+    }
 
     public void saveVehicle() throws IOException, ParseException {
         int i = 0;
@@ -569,21 +563,82 @@ public class SandProject {
             }
         }
     }
-    public void showBilling() throws IOException{
+
+    /**
+     * Este metodo muestra toda la factura del cliente, que contiene en el
+     * arreglo de contact y requests.
+     *
+     * @throws IOException
+     * @throws ParseException
+     */
+    public void showBilling() throws IOException, ParseException {
         System.out.println("Id del cliente a facturar");
-        String id =br.readLine();
-        for (int i = 0; i < contact.length; i++) {
-            if (id.equals(contact[i].getIdCustomer())) {
-                if (id.equals(requests[i].getIdCustomerRequest())) {
-                    System.out.println(contact[i].toString());
-                    System.out.println(requests[i].toString());
+        String id = br.readLine();
+        try {
+            for (int i = 0; i < contact.length; i++) {
+                if (id.equals(contact[i].getIdCustomer())) {
+                    if (id.equals(requests[i].getIdCustomerRequest())) {
+                        Billing a = registerBilling();
+
+                        System.out.println(" Numero de facturacion: " + a.getBillingNumber() + "\n"
+                                + " Nombre de cliente: " + contact[i].getContact().getName() + "\n"
+                                + " Direccion: " + contact[i].getContact().getAddress() + "\n"
+                                + " Email: " + contact[i].getContact().getEmail() + "\n"
+                                + " Telefono: " + contact[i].getContact().getPhone() + "\n"
+                                + " CFI: " + contact[i].getCIF() + "\n"
+                                + " DNI: " + contact[i].getDNI() + "\n"
+                                + " ID cliente: " + contact[i].getIdCustomer());
+                        System.out.println(" Tipo de material: " + requests[i].getProduct().getMaterialType() + "\n"
+                                + " Tipo de cantidad: " + requests[i].getProduct().getQuantity() + "\n"
+                                + " Precio: " + requests[i].getProduct().getPrice() + "\n"
+                                + " Precio total: " + a.getTotalPrice());
+                        if (requests[i].getRequestStatus().equals("tramite")) {
+                            requests[i].setRequestStatus("ejecutado");
+                        }
+                    }
+                    System.out.println("");
                 }
-                System.out.println("");
-            }else
-                System.out.println("no sirvio");
+
+            }
+
+        } catch (IOException iOException) {
+            System.out.println("no contiene ninguna solicitud");
+            menu();
         }
     }
 
-    
+    /**
+     * Este metodo crea el numero de facturacion y el precio total de la
+     * factura.
+     *
+     * @return
+     * @throws IOException
+     */
+    public Billing registerBilling() throws IOException {
+
+        int billing;
+        billing = (int) (Math.random() * 99999);
+        String billingNumber;
+        billingNumber = String.valueOf(billing);
+        double totalPrice = 0;
+        System.out.println("digite el precio total");
+        totalPrice = Double.parseDouble(br.readLine());
+
+        return new Billing(totalPrice, billingNumber);
+    }
+
+    /**
+     * muestra las solicitudes de que cada cliente.
+     */
+
+    public void showRequest() {
+        for (int i = 0; i < requests.length; i++) {
+            if (requests[i] != null) {
+                System.out.println("Se registro la solicitud: " + requests[i].toString());
+
+            }
+        }
+
+    }
 
 }
