@@ -577,10 +577,8 @@ public class SandProject {
         try {
             for (int i = 0; i < contact.length; i++) {
                 if (id.equals(contact[i].getIdCustomer())) {
-                    if (id.equals(requests[i].getIdCustomerRequest())) {
-                        Billing a = registerBilling();
-
-                        System.out.println(" Numero de facturacion: " + a.getBillingNumber() + "\n"
+                      Billing a = registerBilling();
+                     System.out.println(" Numero de facturacion: " + a.getBillingNumber() + "\n"
                                 + " Nombre de cliente: " + contact[i].getContact().getName() + "\n"
                                 + " Direccion: " + contact[i].getContact().getAddress() + "\n"
                                 + " Email: " + contact[i].getContact().getEmail() + "\n"
@@ -588,14 +586,20 @@ public class SandProject {
                                 + " CFI: " + contact[i].getCIF() + "\n"
                                 + " DNI: " + contact[i].getDNI() + "\n"
                                 + " ID cliente: " + contact[i].getIdCustomer());
-                        System.out.println(" Tipo de material: " + requests[i].getProduct().getMaterialType() + "\n"
-                                + " Tipo de cantidad: " + requests[i].getProduct().getQuantity() + "\n"
-                                + " Precio: " + requests[i].getProduct().getPrice() + "\n"
+                     for (int j = 0; j < requests.length; j++) {
+                        if (id.equals(requests[j].getIdCustomerRequest())) {
+                      
+                        System.out.println(" Tipo de material: " + requests[j].getProduct().getMaterialType() + "\n"
+                                + " Cantidad de material: " + requests[j].getProduct().getQuantity() + "\n"
+                                + " Precio: " + requests[j].getProduct().getPrice() + "\n"
                                 + " Precio total: " + a.getTotalPrice());
-                        if (requests[i].getRequestStatus().equals("tramite")) {
-                            requests[i].setRequestStatus("ejecutado");
+                        if (requests[j].getRequestStatus().equals("tramite")) {
+                            requests[j].setRequestStatus("ejecutado");
                         }
+                       
                     }
+                    }
+                    
                     System.out.println("");
                 }
 
