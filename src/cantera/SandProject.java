@@ -99,6 +99,7 @@ public class SandProject {
                 menu();
                 break;
             case 4:
+                mostrar();
                 menu();
                 break;
             case 5:
@@ -401,6 +402,7 @@ public class SandProject {
             }
         }
         
+        
    
       
         menu();
@@ -547,6 +549,13 @@ public class SandProject {
             }
         }
     }
-    
+    public void mostrar (){
+        
+        for (int j = 0; j < requests.length; j++) {
+            if (requests[j] != null) {
+                System.out.println(requests[j].toString());   
+            }
+        }
+    }
 
 }
