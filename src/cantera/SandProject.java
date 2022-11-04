@@ -90,8 +90,7 @@ public class SandProject {
 
             case 2:
                 checkCustomer(contact);
-                  
-   
+
                 break;
             case 3:
                 checkVehicle(requests);
@@ -99,10 +98,11 @@ public class SandProject {
                 menu();
                 break;
             case 4:
-                mostrar();
+               
                 menu();
                 break;
             case 5:
+                showBilling();
                 menu();
                 break;
             case 6:
@@ -401,10 +401,7 @@ public class SandProject {
                 break;
             }
         }
-        
-        
-   
-      
+
         menu();
     }
 
@@ -417,21 +414,33 @@ public class SandProject {
      * @throws IOException
      */
     public void checkCustomer(Applicant contact[]) throws IOException, ParseException {
-        System.out.println("Id del cliente para comprobar su registro");
-        String idResponse = br.readLine();
-        for (int i = 0; i < contact.length; i++) {
-            if (contact[i].getIdCustomer().equals(idResponse)) {
+        try {
+            boolean correct = true;
+            System.out.println("Id del cliente para comprobar su registro");
+            String idResponse = br.readLine();
+            for (int i = 0; i < contact.length; i++) {
+                if (contact[i].getIdCustomer().equals(idResponse)) {
+                    correct = true;
+                    
+                    break;
+                } else {
+                    correct = false;
+                    
+                }
+                
+            }
+            if (correct == true) {
                 System.out.println("El cliente si esta registrado \n"
                         + "Registro de la solicitud");
                 saveRequest();
-                break;
-            } else {
-                System.out.println("El cliente no se encuentra registrado");
             }
-           
+        } catch (Exception e) {
+       
+            System.out.println("El cliente no se encuentra registrado");
+            menu();
+        
 
-        }
-
+    }
     }
 
     /**
@@ -518,26 +527,37 @@ public class SandProject {
     }
 
     public void checkVehicle(Request requests[]) throws IOException, ParseException {
-        
-        System.out.println("numero de solitud");
-        String numberRequests = br.readLine();
-        for (int i = 0; i < requests.length; i++) {
-            if (numberRequests.equals(requests[i].getRequestNumber())) {
-                System.out.println("la solicitud si esta creada ");
-                saveVehicle();
-                break;
-               
-            } else {
-                System.out.println("La solicitud no esta almacenado");
-                menu();
+          try {
+            boolean correct = true;
+            System.out.println("numero de solitud");
+            String numberRequests = br.readLine();
+            for (int i = 0; i < requests.length; i++) {
+                if (numberRequests.equals(requests[i].getRequestNumber())) {
+                    correct = true;
+                    
+                    break;
+                    
+                } else {
+                    correct = false;
+                    
+                }
+                
             }
-         
-
+            if (correct) {
+                System.out.println("la solicitud si esta registrada ");
+                saveVehicle();
+            }
+        } catch (Exception e) {
+            System.out.println("La solicitud no fue encontrada");
+             menu();
         }
+             
+        }
+        
+    
 
-    }
-    public void saveVehicle () throws IOException, ParseException{
-         int i = 0;
+    public void saveVehicle() throws IOException, ParseException {
+        int i = 0;
         VehicleRegistration p = vehicleRegistration();
         for (i = 0; i < vehicleRegistration.length; i++) {
             if (vehicleRegistration[i] == null) {
@@ -549,13 +569,21 @@ public class SandProject {
             }
         }
     }
-    public void mostrar (){
-        
-        for (int j = 0; j < requests.length; j++) {
-            if (requests[j] != null) {
-                System.out.println(requests[j].toString());   
-            }
+    public void showBilling() throws IOException{
+        System.out.println("Id del cliente a facturar");
+        String id =br.readLine();
+        for (int i = 0; i < contact.length; i++) {
+            if (id.equals(contact[i].getIdCustomer())) {
+                if (id.equals(requests[i].getIdCustomerRequest())) {
+                    System.out.println(contact[i].toString());
+                    System.out.println(requests[i].toString());
+                }
+                System.out.println("");
+            }else
+                System.out.println("no sirvio");
         }
     }
+
+    
 
 }
